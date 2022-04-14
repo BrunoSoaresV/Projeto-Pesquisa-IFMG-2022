@@ -20,7 +20,7 @@ print("\nPrograma realizado por Bruno Soares Veríssimo, 2022.")
 print('\nProjeto de pesquisa "INFORMAÇÕES INFUNDADAS E SEUS IMPACTOS NA PANDEMIA DA COVID-19: O CASO BRASILEIRO".')
 print("\nIFMG - Campus Ouro Branco.")
 print("\n------------------------------------------------------------------------------------------------------")
-numero = int(input("Digite o número 1, caso queira ver sua timeline;\nO número 2, caso queira ver os detalhes de um determinado usuário;\nOu o número 3, caso queira ver os tweets e respostas de um determinado usuário:   "))
+numero = int(input("Digite o número 1, caso queira ver sua timeline;\nO número 2, caso queira ver os detalhes de um determinado usuário;\nO número 3, caso queira ver os tweets e respostas de um determinado usuário;\nOu o número 4, para pesquisar palvras-chave:    "))
 while numero == 1:
     try:
         x = int(input('Qual é a quantidade de tweets que você quer ver?  '))
@@ -215,10 +215,37 @@ while numero == 3:
     except:
         print ('Ocorreu algum erro! Tente novamente.')
         
-            
-    #Enquanto números diferentes#
-while numero != 1 or numero != 2 or numero != 3:
-    numero = int(input("Resposta inválida, por favor digite o número 1, caso queira ver sua timeline;\nO número 2, caso queira ver os detalhes de um determinado usuário;\nOu o número 3, caso queira ver os tweets e respostas de um determinado usuário:   "))  
+#####Palavras-chave ########
+while numero==4:
+    try:
+        usuario1 = str(input('Qual é a palavra-chave que você quer pesquisar?  '))
+        for tweet in tweepy.Cursor (api.search, q=usuario1, lang="pt-br").items(1000):
+            print('{} realizou o tweet:  {} , com o id numérico: {}.'.format(tweet.user.name, tweet.text, tweet.id))
+            sleep(10)
+        ab = str(input("Caso queira pesquisar outra palavras-chave, digite sim, caso contrário, digite não:  "))
+        while ab == "sim" or ab == "Sim":
+            usuario1 = str(input('Qual é a palavra-chave que você quer pesquisar?  '))
+            for tweet in tweepy.Cursor (api.search, q=usuario1, lang="pt-br").items(1000):
+                print('{} realizou o tweet:  {} , com o id numérico: {}.'.format(tweet.user.name, tweet.text, tweet.id))
+                sleep(10)
+            ab = str(input("Caso queira pesquisar outra palavras-chave, digite sim, caso contrário, digite não:  "))
+        while ab == "não" or ab=="Não":
+            quit()
+        while ab !="não" or ab!="Não" or ab!="Sim" or ab!="sim":
+            ab = str(input("Resposta inválida. Caso queira pesquisar outra palavras-chave, digite sim, caso contrário, digite não:  "))
+            while ab == "sim" or ab == "Sim":
+                usuario1 = str(input('Qual é a palavra-chave que você quer pesquisar?  '))
+                for tweet in tweepy.Cursor (api.search, q=usuario1, lang="pt-br").items(1000):
+                    print('{} realizou o tweet:  {} , com o id numérico: {}.'.format(tweet.user.name, tweet.text, tweet.id))
+                    sleep(10)
+                ab = str(input("Caso queira pesquisar outra palavras-chave, digite sim, caso contrário, digite não:  "))
+            while ab == "não" or ab=="Não":
+                quit()
+    except:
+        print ('Ocorreu algum erro! Tente novamente.')
+ #Enquanto números diferentes#
+while numero != 1 or numero != 2 or numero != 3 or numero!=4:
+    numero = int(input("Resposta inválida, por favor digite o número 1, caso queira ver sua timeline;\nO número 2, caso queira ver os detalhes de um determinado usuário;\nO o número 3, caso queira ver os tweets e respostas de um determinado usuário;\nOu o número 4, para pesquisar palvras-chave de tweets:    "))  
     
     #####Número tweets timeline 2 ########
     while numero == 1:
@@ -411,4 +438,32 @@ while numero != 1 or numero != 2 or numero != 3:
                     quit()
         except:
             print ('Ocorreu algum erro! Tente novamente.')
-
+            #####Palavras-chave 2########
+    while numero==4:
+        try:
+            usuario1 = str(input('Qual é a palavra-chave que você quer pesquisar?  '))
+            for tweet in tweepy.Cursor (api.search, q=usuario1, lang="pt-br").items(1000):
+                print('{} realizou o tweet:  {} , com o id numérico: {}.'.format(tweet.user.name, tweet.text, tweet.id))
+                sleep(10)
+            ab = str(input("Caso queira pesquisar outra palavras-chave, digite sim, caso contrário, digite não:  "))
+            while ab == "sim" or ab == "Sim":
+                usuario1 = str(input('Qual é a palavra-chave que você quer pesquisar?  '))
+                for tweet in tweepy.Cursor (api.search, q=usuario1, lang="pt-br").items(1000):
+                    print('{} realizou o tweet:  {} , com o id numérico: {}.'.format(tweet.user.name, tweet.text, tweet.id))
+                    sleep(10)
+                ab = str(input("Caso queira pesquisar outra palavras-chave, digite sim, caso contrário, digite não:  "))
+            while ab == "não" or ab=="Não":
+                quit()
+            while ab !="não" or ab!="Não" or ab!="Sim" or ab!="sim":
+                ab = str(input("Resposta inválida. Caso queira pesquisar outra palavras-chave, digite sim, caso contrário, digite não:  "))
+                while ab == "sim" or ab == "Sim":
+                    usuario1 = str(input('Qual é a palavra-chave que você quer pesquisar?  '))
+                    for tweet in tweepy.Cursor (api.search, q=usuario1, lang="pt-br").items(1000):
+                        print('{} realizou o tweet:  {} , com o id numérico: {}.'.format(tweet.user.name, tweet.text, tweet.id))
+                        sleep(10)
+                    ab = str(input("Caso queira pesquisar outra palavras-chave, digite sim, caso contrário, digite não:  "))
+                while ab == "não" or ab=="Não":
+                    quit()
+        except:
+            print ('Ocorreu algum erro! Tente novamente.')
+   
